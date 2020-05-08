@@ -1,0 +1,49 @@
+START 15
+INFO max_memory 83886080
+INFO timeout_match 180000
+INFO timeout_turn 300000
+INFO game_type 1
+INFO rule 4
+INFO time_left 179706
+INFO folder C:\ProgramData
+TURN 7,7
+INFO time_left 179701
+TURN 6,6
+
+
+START 15
+INFO max_memory 83886080
+INFO timeout_match 180000
+INFO timeout_turn 300000
+INFO game_type 1
+INFO rule 4
+INFO time_left 179884
+INFO folder C:\ProgramData
+BEGIN
+INFO time_left 179866
+TURN 6,7
+6,6
+
+START 15
+INFO max_memory 83886080
+INFO timeout_match 180000
+INFO timeout_turn 300000
+INFO game_type 1
+INFO rule 4
+INFO time_left 178163
+INFO folder C:\ProgramData
+BOARD
+7,6,2
+6,7,1
+7,8,2
+7,10,1
+8,12,2
+6,11,1
+3,9,2
+3,7,1
+4,4,2
+7,3,1
+11,3,2
+11,6,1
+10,8,2
+DONE
