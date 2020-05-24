@@ -1,0 +1,68 @@
+﻿<Window x:Class="RenjuAdvisor.View.CutBoardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:RenjuAdvisor.View" 
+        xmlns:converter="clr-namespace:RenjuAdvisor.Converter"
+        xmlns:command="http://www.galasoft.ch/mvvmlight" 
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=CutBoard}"
+        Title="{Binding Path=CutBoardArgs.WzqGameProcess.MainWindowTitle}" Height="450" Width="800" SizeToContent="WidthAndHeight" Topmost="True" >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <ei:CallMethodAction TargetObject="{Binding}" MethodName="ViewLoaded"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <converter:BitmapImageSourceConverter x:Key="BitmapImageSourceConverter"/>
+    </Window.Resources>
+    <StackPanel>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <TextBlock  Margin="5" Padding="5">
+                    <Run Text="左上角："/>
+                    <Run Text="{Binding MouseDownLocation.X}"/>
+                    <Run Text=","/>
+                    <Run Text="{Binding MouseDownLocation.Y}"/>
+                </TextBlock>
+                <TextBlock  Margin="5" Padding="5">
+                    <Run Text="右下角："/>
+                    <Run Text="{Binding MouseUpLocation.X}"/>
+                    <Run Text=","/>
+                    <Run Text="{Binding MouseUpLocation.Y}"/>
+                </TextBlock>
+                <TextBlock  Margin="5" Padding="5">
+                    <Run Text="棋盘大小："/>
+                    <Run Text="{Binding RectangleSize.Width}"/>
+                    <Run Text=","/>
+                    <Run Text="{Binding RectangleSize.Height}"/>
+                </TextBlock>
+                <Button Content="确定" Margin="5" Padding="5"/>
+                <Button Content="取消" Margin="5" Padding="5" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource AncestorType=Window,Mode=FindAncestor}}"
+                                                 MethodName="Close"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+            <TextBlock Text="请框选五子棋棋盘(从左上角落子中心点，到右下角落子中心点)" Margin="5" Padding="5"/>
+        </DockPanel>
+        <Canvas Width="{Binding GameBoardBitmap.Size.Width}" Height="{Binding GameBoardBitmap.Size.Height}" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <command:EventToCommand Command="{Binding CanvasMouseLeftButtonDownCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseMove">
+                    <command:EventToCommand Command="{Binding CanvasMouseMoveCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Image Width="{Binding GameBoardBitmap.Size.Width}" Height="{Binding GameBoardBitmap.Size.Height}"
+                   Source="{Binding GameBoardBitmap, Converter={StaticResource BitmapImageSourceConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Canvas>
+    </StackPanel>
+</Window>

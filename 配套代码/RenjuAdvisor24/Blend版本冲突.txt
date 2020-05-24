@@ -1,0 +1,2 @@
+cd  C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
+gacutil.exe  /i C:\Users\Zmrbak\source\repos\RenjuAdvisor\packages\Expression.Interaction.3.0.40218.0\lib\net46\System.Windows.Interactivity.dll
