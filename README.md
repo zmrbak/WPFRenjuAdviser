@@ -17,3 +17,7 @@
 
 # 学员评价
 
+<li><img src="https://raw.githubusercontent.com/zmrbak/WPFRenjuAdviser/master/%E5%AD%A6%E5%91%98%E8%AF%84%E4%BB%B7/Screenshot_2020-05-29-16-24-46.png"><br/>
+<li><img src="https://raw.githubusercontent.com/zmrbak/WPFRenjuAdviser/master/%E5%AD%A6%E5%91%98%E8%AF%84%E4%BB%B7/Screenshot_2020-05-29-16-20-57.png"><br/>
+<li><img src="https://raw.githubusercontent.com/zmrbak/WPFRenjuAdviser/master/%E5%AD%A6%E5%91%98%E8%AF%84%E4%BB%B7/Screenshot_2020-05-29-16-20-20.png"><br/>
+<li><img src="https://raw.githubusercontent.com/zmrbak/WPFRenjuAdviser/master/%E5%AD%A6%E5%91%98%E8%AF%84%E4%BB%B7/Screenshot_2020-05-29-16-23-18.png"><br/>
