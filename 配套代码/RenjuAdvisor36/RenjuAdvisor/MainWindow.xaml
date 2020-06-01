@@ -1,0 +1,96 @@
+﻿<Window x:Class="RenjuAdvisor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RenjuAdvisor" 
+        xmlns:behavior="clr-namespace:RenjuAdvisor.Behavior"
+        xmlns:converter="clr-namespace:RenjuAdvisor.Converter" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:command="http://www.galasoft.ch/mvvmlight" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator},Path=Main}"
+        Title="五子棋军师" Height="477" Width="229" >
+    <Window.Resources>
+        <behavior:TextBoxErrorHelper x:Key="TextBoxErrorHelper" TextNumber="600" MinNumber="300" MaxNumber="3000"/>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <ControlTemplate x:Key="TextBoxErrorTemplate">
+            <DockPanel>
+                <TextBlock Text="!" Foreground="Red" FontWeight="Bold"/>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding ViewLoadedCommnad}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <ei:CallMethodAction TargetObject="{Binding}" MethodName="ClosingCommand"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <StackPanel>
+        <GroupBox>
+            <GroupBox.Header>
+                <Button Content="选择五子棋游戏" Command="{Binding ChooseWzqGameRelayCommnad}" />
+            </GroupBox.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="59*"/>
+                    <ColumnDefinition Width="150*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="程序名：" Grid.Column="0" Grid.Row="0"/>
+                <TextBlock Text="{Binding WzqGameProcess.MainWindowTitle, Mode=OneWay}" Grid.Column="1"/>
+                <TextBlock Text="进程名：" Grid.Row="1"/>
+                <TextBlock Text="{Binding WzqGameProcess.ProcessName, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Text="启动时间：" Grid.Row="2"/>
+                <TextBlock Text="{Binding WzqGameProcess.StartTime, Mode=OneWay, StringFormat=\{0:yyy-MM-dd HH:mm:ss\}}" Grid.Row="2" Grid.Column="1"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox>
+            <GroupBox.Header>
+                <TextBlock Text="系统设置"/>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="59*"/>
+                    <ColumnDefinition Width="150*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="截图间隔：" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="15" Margin="0,2" Width="60"/>
+                <DockPanel Grid.Column="1">
+                    <Button Content="保存" DockPanel.Dock="Right" Margin="1" Width="35"
+                             IsEnabled="{Binding (Validation.HasError), Converter={StaticResource InverseBooleanConverter}, ElementName=textBox}"
+                            Command="{Binding SaveCaptureIntevalCommand}"
+                            CommandParameter="{Binding ElementName=textBox,Path=Text}"
+                            />
+                    <TextBlock Text="ms" DockPanel.Dock="Right" Margin="1"/>
+                    <TextBox 
+                        x:Name="textBox"
+                        InputMethod.IsInputMethodEnabled="False"
+                        behavior:TextBoxHelper.IsOnlyNumber="True"
+                        Validation.ErrorTemplate="{StaticResource ResourceKey=TextBoxErrorTemplate}"
+                        Text="{Binding TextNumber, Source={StaticResource TextBoxErrorHelper}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                        Margin="1">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Validation.HasError" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+        <TextBlock x:Name="info"/>
+    </StackPanel>
+</Window>
