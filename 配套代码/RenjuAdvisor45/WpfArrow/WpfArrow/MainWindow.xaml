@@ -1,0 +1,30 @@
+﻿<Window
+    x:Class="WpfArrow.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfArrow"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="75"
+    Height="70"
+    AllowsTransparency="True"
+    Background="{x:Null}"
+    ResizeMode="NoResize"
+    Topmost="True"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <Path
+            Width="75.167"
+            Height="69.834"
+            Margin="0,0.333,-0.167,-0.167"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Data="M1,1 L33.833333,69.167 74.167395,30.500187 z"
+            Fill="#FF3333DA"
+            Stretch="Fill"
+            Stroke="#FFF5F1F1"
+            StrokeThickness="1" />
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+﻿<Window
+    x:Class="RenjuAdvisor.View.ArrowWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="75"
+    Height="69"
+    AllowsTransparency="True"
+    Background="{x:Null}"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    Topmost="True"
+    Visibility="Collapsed"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Viewbox>
+        <Path
+            Width="75.167"
+            Height="69.834"
+            Margin="0,0.333,-0.167,-0.167"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Data="M1,1 L33.833333,69.167 74.167395,30.500187 z"
+            Fill="#FF3333DA"
+            Stretch="Fill"
+            Stroke="#FFF5F1F1"
+            StrokeThickness="1" />
+    </Viewbox>
+</Window>
